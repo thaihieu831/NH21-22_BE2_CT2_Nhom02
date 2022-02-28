@@ -13,16 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('demo');
+Route::get('/{page?}', function ($page="index") {
+    return view($page);
 });
-Route::get('/intro/{Hieu?}', function ($id="Thai Minh Hieu") {
-    echo $id;
-});
-
-Route::get('/GioiThieu', function () {
-    return view('GioiThieu');
-});
-Route::get('/LienHe', function () {
-    return view('LienHe');
-});
+Route::get('/{welcome}', function () {
+    return view("welcome");
+})->name('welcome');
