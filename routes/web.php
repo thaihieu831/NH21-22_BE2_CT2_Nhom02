@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('demo');
 });
-Route::get('/TrangChu', function () {
-    return view('TrangChu');
+Route::get('/intro/{Hieu?}', function ($id="Thai Minh Hieu") {
+    echo $id;
 });
 
 Route::get('/GioiThieu', function () {
