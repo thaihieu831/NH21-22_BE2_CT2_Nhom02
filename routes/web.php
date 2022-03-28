@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/{page?}', function ($page="index") {
-    return view($page);
-});
-Route::get('/{welcome}', function () {
-    return view("welcome");
-})->name('welcome');
+Route::get('/', [MyController::class, 'index']);
+/*
+Route::post('signup', [MyController::class, 'signup']);
+Route::resource('product','ProductController');
+Route::get('product',[ProductController::class,'index']);
+Route::get('product/create',[ProductController::class,'create']);
+Route::post('product',[ProductController::class,'store']);
+Route::get('product',[ProductController::class,'show']);
+Route::get('product/{id}/edit',[ProductController::class,'edit']);
+Route::patch('product/{id}',[ProductController::class,'update']);
+Route::delete('product/{id}',[ProductController::class,'destroy']);*/
