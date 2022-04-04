@@ -19,8 +19,8 @@ Route::get('/', [MyController::class, 'index']);
 /*Route::get('/checkout', function () {
     return view('checkout');
 });*/
-Route::get('/{name?}', function ($name="index") {
-        return view($name);
+Route::get('/{name?}', function ($name = "index") {
+    return view($name);
 });
 /*
 Route::post('signup', [MyController::class, 'signup']);
