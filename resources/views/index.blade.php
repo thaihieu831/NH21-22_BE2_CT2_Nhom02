@@ -8,13 +8,11 @@
 		<div id="responsive-nav">
 			<!-- NAV -->
 			<ul class="main-nav nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Hot Deals</a></li>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#">Laptops</a></li>
-				<li><a href="#">Smartphones</a></li>
-				<li><a href="#">Cameras</a></li>
-				<li><a href="#">Accessories</a></li>
+				<li><a href="{{ asset('index')}}">Home &emsp;</a></li>
+				{{ csrf_field() }}
+				@foreach ($category as $row)
+				<li><a href="{{route('category_product', ['type_id' => $row->type_id])}}">{{$row->type_name}}</a></li>
+				@endforeach
 			</ul>
 			<!-- /NAV -->
 		</div>
@@ -88,13 +86,14 @@
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h3 class="title">New Products</h3>
+					<h3 class="title">Sản phẩm mới</h3>
 					<div class="section-nav">
 						<ul class="section-tab-nav tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-							<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-							<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-							<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+							<li class="active"><a data-toggle="tab" href="#tab1">Điện thoại</a></li>
+							<li><a data-toggle="tab" href="#tab2">Laptop</a></li>
+							<li><a data-toggle="tab" href="#tab3">Máy tính bảng</a></li>
+							<li><a data-toggle="tab" href="#tab4">Smartwatch</a></li>
+							<li><a data-toggle="tab" href="#tab5">Tai nghe</a></li>
 						</ul>
 					</div>
 				</div>
@@ -108,19 +107,17 @@
 						<!-- tab -->
 						<div id="tab1" class="tab-pane active">
 							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($new_product_phone as $row)
 								<!-- product -->
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product01.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
-										</div>
+										<img src="./img/{{$row->image}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -139,25 +136,32 @@
 									</div>
 								</div>
 								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
 
+						<!-- tab -->
+						<div id="tab2" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($new_product_lap as $row)
 								<!-- product -->
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product02.png" alt="">
-										<div class="product-label">
-											<span class="new">NEW</span>
-										</div>
+										<img src="./img/{{$row->image}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
@@ -170,20 +174,32 @@
 									</div>
 								</div>
 								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
 
+						<!-- tab -->
+						<div id="tab3" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($new_product_tablet as $row)
 								<!-- product -->
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product03.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-										</div>
+										<img src="./img/{{$row->image}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
@@ -196,16 +212,26 @@
 									</div>
 								</div>
 								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
 
+						<!-- tab -->
+						<div id="tab4" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($new_product_sw as $row)
 								<!-- product -->
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product04.png" alt="">
+										<img src="./img/{{$row->image}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -224,16 +250,26 @@
 									</div>
 								</div>
 								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
 
+						<!-- tab -->
+						<div id="tab5" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($new_product_tainghe as $row)
 								<!-- product -->
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product05.png" alt="">
+										<img src="./img/{{$row->image}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -252,6 +288,7 @@
 									</div>
 								</div>
 								<!-- /product -->
+								@endforeach
 							</div>
 							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
@@ -323,13 +360,14 @@
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h3 class="title">Top selling</h3>
+					<h3 class="title">Sản phẩm nổi bật</h3>
 					<div class="section-nav">
 						<ul class="section-tab-nav tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-							<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-							<li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-							<li><a data-toggle="tab" href="#tab2">Accessories</a></li>
+							<li class="active"><a data-toggle="tab" href="#page1">Điện thoại</a></li>
+							<li><a data-toggle="tab" href="#page2">Laptop</a></li>
+							<li><a data-toggle="tab" href="#page3">Máy tính bảng</a></li>
+							<li><a data-toggle="tab" href="#page4">Smartwatch</a></li>
+							<li><a data-toggle="tab" href="#page5">Tai nghe</a></li>
 						</ul>
 					</div>
 				</div>
@@ -339,23 +377,21 @@
 			<!-- Products tab & slick -->
 			<div class="col-md-12">
 				<div class="row">
-					<div class="products-tabs">
+				<div class="products-tabs">
 						<!-- tab -->
-						<div id="tab2" class="tab-pane fade in active">
-							<div class="products-slick" data-nav="#slick-nav-2">
+						<div id="page1" class="tab-pane active">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($feature_product_phone as $row)
 								<!-- product -->
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product06.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
-										</div>
+										<img src="./img/{{$row->image}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -374,121 +410,161 @@
 									</div>
 								</div>
 								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product07.png" alt="">
-										<div class="product-label">
-											<span class="new">NEW</span>
-										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product08.png" alt="">
-										<div class="product-label">
-											<span class="sale">-30%</span>
-										</div>
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product09.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
-
-								<!-- product -->
-								<div class="product">
-									<div class="product-img">
-										<img src="./img/product01.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
-								</div>
-								<!-- /product -->
+								@endforeach
 							</div>
-							<div id="slick-nav-2" class="products-slick-nav"></div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
+
+						<!-- tab -->
+						<div id="page2" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($feature_product_lap as $row)
+								<!-- product -->
+								<div class="product">
+									<div class="product-img">
+										<img src="./img/{{$row->image}}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</div>
+								</div>
+								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
+
+						<!-- tab -->
+						<div id="page3" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($feature_product_tablet as $row)
+								<!-- product -->
+								<div class="product">
+									<div class="product-img">
+										<img src="./img/{{$row->image}}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</div>
+								</div>
+								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
+
+						<!-- tab -->
+						<div id="page4" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($feature_product_sw as $row)
+								<!-- product -->
+								<div class="product">
+									<div class="product-img">
+										<img src="./img/{{$row->image}}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</div>
+								</div>
+								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
+
+						<!-- tab -->
+						<div id="page5" class="tab-pane">
+							<div class="products-slick" data-nav="#slick-nav-1">
+								{{ csrf_field() }}
+								@foreach ($new_product_tainghe as $row)
+								<!-- product -->
+								<div class="product">
+									<div class="product-img">
+										<img src="./img/{{$row->image}}" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{$row->type_name}}</p>
+										<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+										<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</div>
+								</div>
+								<!-- /product -->
+								@endforeach
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
 						<!-- /tab -->
 					</div>
@@ -510,7 +586,7 @@
 		<div class="row">
 			<div class="col-md-4 col-xs-6">
 				<div class="section-title">
-					<h4 class="title">Top selling</h4>
+					<h4 class="title">Điện thoại bán chạy</h4>
 					<div class="section-nav">
 						<div id="slick-nav-3" class="products-slick-nav"></div>
 					</div>
@@ -518,92 +594,28 @@
 
 				<div class="products-widget-slick" data-nav="#slick-nav-3">
 					<div>
+						{{ csrf_field() }}
+						@foreach ($topselling_phone as $row)
 						<!-- product widget -->
 						<div class="product-widget">
 							<div class="product-img">
-								<img src="./img/product07.png" alt="">
+								<img src="./img/{{$row->image}}" alt="">
 							</div>
 							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								<p class="product-category">{{$row->type_name}}</p>
+								<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+								<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 							</div>
 						</div>
 						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product08.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product09.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
-					</div>
-
-					<div>
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product01.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product02.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
+						@endforeach
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-4 col-xs-6">
 				<div class="section-title">
-					<h4 class="title">Top selling</h4>
+					<h4 class="title">LAPTOP BÁN CHẠY</h4>
 					<div class="section-nav">
 						<div id="slick-nav-4" class="products-slick-nav"></div>
 					</div>
@@ -611,85 +623,21 @@
 
 				<div class="products-widget-slick" data-nav="#slick-nav-4">
 					<div>
+						{{ csrf_field() }}
+						@foreach ($topselling_laptop as $row)
 						<!-- product widget -->
 						<div class="product-widget">
 							<div class="product-img">
-								<img src="./img/product04.png" alt="">
+								<img src="./img/{{$row->image}}" alt="">
 							</div>
 							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								<p class="product-category">{{$row->type_name}}</p>
+								<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+								<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 							</div>
 						</div>
 						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product05.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product06.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
-					</div>
-
-					<div>
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product07.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product08.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product09.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -698,7 +646,7 @@
 
 			<div class="col-md-4 col-xs-6">
 				<div class="section-title">
-					<h4 class="title">Top selling</h4>
+					<h4 class="title">SMARTWATCH Bán Chạy</h4>
 					<div class="section-nav">
 						<div id="slick-nav-5" class="products-slick-nav"></div>
 					</div>
@@ -706,89 +654,24 @@
 
 				<div class="products-widget-slick" data-nav="#slick-nav-5">
 					<div>
+						{{ csrf_field() }}
+						@foreach ($topselling_sw as $row)
 						<!-- product widget -->
 						<div class="product-widget">
 							<div class="product-img">
-								<img src="./img/product01.png" alt="">
+								<img src="./img/{{$row->image}}" alt="">
 							</div>
 							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								<p class="product-category">{{$row->type_name}}</p>
+								<h3 class="product-name"><a href="{{route('product_detail', ['product_id' => $row->product_id])}}">{{$row->product_name}}</a></h3>
+								<h4 class="product-price">{{number_format($row->price)}} vnđ</h4>
 							</div>
 						</div>
 						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product02.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
-					</div>
-
-					<div>
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product04.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product05.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- /product widget -->
-
-						<!-- product widget -->
-						<div class="product-widget">
-							<div class="product-img">
-								<img src="./img/product06.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name"><a href="#">product name goes here</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-							</div>
-						</div>
-						<!-- product widget -->
+						@endforeach
 					</div>
 				</div>
 			</div>
-
 		</div>
 		<!-- /row -->
 	</div>
