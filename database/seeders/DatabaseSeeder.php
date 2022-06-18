@@ -283,21 +283,24 @@ class DatabaseSeeder extends Seeder
             'note' => 'abc',
             'address' => 'Thu Duc',
         ]);
-        DB::table('wishlists')->insert([
-            'wish_id' => '1',
-            'user_id' => '1',
-            'product_id' => '1',
-            'created_at' => '2022-05-30 09:23:13',
-            'updated_at' => '2022-05-30 09:23:13',
-        ]);
-        // DB::table('carts')->insert([
-        //     'id' => '1',
-        //     'product_id' => '1',
+        // DB::table('wishlists')->insert([
+        //     'wish_id' => '1',
         //     'user_id' => '1',
-        //     'total' => '19900000',
-        //     'quantity' => '1',
+        //     'product_id' => '1',
         //     'created_at' => '2022-05-30 09:23:13',
         //     'updated_at' => '2022-05-30 09:23:13',
         // ]);
+        DB::table('users')->insert([
+            'id' => '1',
+            'name' => 'Thai Hieu',
+            'email' => 'Thaihieu243@gmail.com',
+            'avatar' => '1653899882_27d3bdbfb92cab1ca79fe515c4188de0.gif',
+            'phone' => '0987712063',
+            'password' => '$2y$10$gAso.84VtS5cn4fYC8BBgOU5BJiRVgeaOBdZBH4ojduiqW3YeX/EG',
+            'role' => '2',
+            'status' => '1',
+            'created_at' => '2022-05-30 08:38:02',
+            'updated_at' => '2022-05-30 08:38:02',
+        ]);
     }
 }

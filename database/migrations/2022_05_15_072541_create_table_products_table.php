@@ -22,8 +22,7 @@ class CreateTableProductsTable extends Migration
             $table->string('image');
             $table->integer('price');
             $table->integer('feature');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
         });
     }
 
