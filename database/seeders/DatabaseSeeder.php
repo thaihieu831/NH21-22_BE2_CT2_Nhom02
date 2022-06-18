@@ -302,5 +302,17 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2022-05-30 08:38:02',
             'updated_at' => '2022-05-30 08:38:02',
         ]);
+        DB::table('users')->insert([
+            'id' => '2',
+            'name' => 'Quang Sang',
+            'email' => 'quangsang123@gmail.com',
+            'avatar' => '1653899882_27d3bdbfb92cab1ca79fe515c4188de0.gif',
+            'phone' => '0987712063',
+            'password' => '$2y$10$gAso.84VtS5cn4fYC8BBgOU5BJiRVgeaOBdZBH4ojduiqW3YeX/EG',
+            'role' => '1',
+            'status' => '1',
+            'created_at' => '2022-05-30 08:38:02',
+            'updated_at' => '2022-05-30 08:38:02',
+        ]);
     }
 }
